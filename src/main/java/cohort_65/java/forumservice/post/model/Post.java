@@ -35,4 +35,24 @@ public class Post {
         this.author = author;
         this.tags = tags;
     }
+
+    public void addLike() {
+        likes++;
+    }
+
+    public boolean addTag(String tag) {
+        return tags.add(tag);
+    }
+
+    public boolean removeTag(String tag) {
+        return tags.remove(tag);
+    }
+
+    public boolean addComment(Comment comment) {
+        return comments.add(comment);
+    }
+
+    public boolean removeComment(Comment comment) {
+        return comments.remove(comment);
+    }
 }
