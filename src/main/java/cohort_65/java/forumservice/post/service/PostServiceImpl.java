@@ -1,6 +1,7 @@
 package cohort_65.java.forumservice.post.service;
 
 import cohort_65.java.forumservice.post.dao.PostRepository;
+import cohort_65.java.forumservice.post.dto.DatePeriodDto;
 import cohort_65.java.forumservice.post.dto.NewCommentDto;
 import cohort_65.java.forumservice.post.dto.NewPostDto;
 import cohort_65.java.forumservice.post.dto.PostDto;
@@ -12,6 +13,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor
@@ -74,5 +77,32 @@ public class PostServiceImpl implements PostService {
         post.addComment(comment);
         post = postRepository.save(post);
         return modelMapper.map(post, PostDto.class);
+    }
+
+    @Override
+    public Iterable<PostDto> getPostsByAuthor(String author) {
+        return StreamSupport
+                .stream(postRepository.findAllByAuthorIgnoreCase(author).spliterator(),
+                        false)
+                .map(post -> modelMapper.map(post, PostDto.class)).toList();
+    }
+
+    @Override
+    public Iterable<PostDto> getPostsByTags(Set<String> tags) {
+        return StreamSupport
+                .stream(postRepository.findAllByTagsIgnoreCaseIn(tags).spliterator(),
+                        false)
+                .map(post -> modelMapper.map(post, PostDto.class)).toList();
+    }
+
+    @Override
+    public Iterable<PostDto> getPostsByPeriod(DatePeriodDto datePeriodDto) {
+        return StreamSupport
+                .stream(postRepository
+                                .findAllByDateCreatedBetween(
+                                        datePeriodDto.getDateFrom(),
+                                        datePeriodDto.getDateTo()).spliterator(),
+                        false)
+                .map(post -> modelMapper.map(post, PostDto.class)).toList();
     }
 }
