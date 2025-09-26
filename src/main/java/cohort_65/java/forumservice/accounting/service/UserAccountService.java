@@ -5,4 +5,6 @@ import cohort_65.java.forumservice.accounting.dto.UserRegisterDto;
 
 public interface UserAccountService {
     UserDto register(UserRegisterDto userRegisterDto);
+
+    UserDto getUserByLogin(String login);
 }

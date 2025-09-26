@@ -4,10 +4,7 @@ import cohort_65.java.forumservice.accounting.dto.UserDto;
 import cohort_65.java.forumservice.accounting.dto.UserRegisterDto;
 import cohort_65.java.forumservice.accounting.service.UserAccountService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,5 +18,8 @@ public class UserAccountController {
         return userAccountService.register(userRegisterDto);
     }
 
-
+    @GetMapping("/user/{login}")
+    public UserDto getUserByLogin(@PathVariable String login) {
+        return userAccountService.getUserByLogin(login);
+    }
 }
