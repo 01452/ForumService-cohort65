@@ -29,13 +29,6 @@ public class PostController {
         return postService.getPostById(id);
     }
 
-//    @PutMapping("/post/{id}/like")
-//    public ResponseEntity<Void> likePost(@PathVariable String id) {
-//        postService.likePost(id);
-//        return ResponseEntity.noContent()
-//                .build();
-//    }
-
     @PutMapping("/post/{id}/like")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void likePost(@PathVariable String id) {
