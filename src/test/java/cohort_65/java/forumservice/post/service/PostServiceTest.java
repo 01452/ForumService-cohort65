@@ -1,7 +1,10 @@
 package cohort_65.java.forumservice.post.service;
 
 import cohort_65.java.forumservice.post.dao.PostRepository;
-import cohort_65.java.forumservice.post.dto.*;
+import cohort_65.java.forumservice.post.dto.DatePeriodDto;
+import cohort_65.java.forumservice.post.dto.NewCommentDto;
+import cohort_65.java.forumservice.post.dto.NewPostDto;
+import cohort_65.java.forumservice.post.dto.PostDto;
 import cohort_65.java.forumservice.post.dto.exception.PostNotFoundException;
 import cohort_65.java.forumservice.post.model.Comment;
 import cohort_65.java.forumservice.post.model.Post;
@@ -18,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import static com.mongodb.client.model.Filters.eq;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
@@ -213,5 +217,24 @@ class PostServiceTest {
 
         assertThat(result).hasSize(1);
         assertThat(result.iterator().next().getId()).isEqualTo("p1");
+    }
+
+    @Test
+    void getPostsByTitle() {
+        Post p1 = new Post("t1", "c1", "authorA", Set.of("x"));
+        p1.setId("1");
+        Post p2 = new Post("t2", "c2", "authorA", Set.of("y","s"));
+        p2.setId("2");
+        Post p3 = new Post("t2", "c3", "authorB", Set.of("w","y"));
+        p3.setId("3");
+
+        Mockito.when(postRepository.findAllByTitleIgnoreCase("t2")).thenReturn(List.of(p2,p3));
+
+        Iterable<PostDto> result = postService.getPostsByTitle("t2");
+
+        assertThat(result).hasSize(2);
+        assertThat(result.iterator().next().getTitle()).isEqualTo("t2");
+        assertThat(result.iterator().next().getAuthor()).isEqualTo("authorA");
+        assertThat(result.iterator().next().getTags()).contains("y", "s");
     }
 }
