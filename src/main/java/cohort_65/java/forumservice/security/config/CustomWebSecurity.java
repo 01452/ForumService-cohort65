@@ -1,4 +1,4 @@
-package cohort_65.java.forumservice.security;
+package cohort_65.java.forumservice.security.config;
 
 import cohort_65.java.forumservice.post.dao.PostRepository;
 import lombok.RequiredArgsConstructor;

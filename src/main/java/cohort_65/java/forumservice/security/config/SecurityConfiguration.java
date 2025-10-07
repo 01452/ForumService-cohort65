@@ -1,4 +1,4 @@
-package cohort_65.java.forumservice.security;
+package cohort_65.java.forumservice.security.config;
 
 import cohort_65.java.forumservice.accounting.model.Role;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +9,8 @@ import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 
@@ -21,10 +23,11 @@ public class SecurityConfiguration {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.httpBasic(Customizer.withDefaults());
-        http.csrf(csrf -> csrf.disable());
+        http.httpBasic(AbstractHttpConfigurer::disable);
+        http.csrf(AbstractHttpConfigurer::disable);
+        http.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/account/register", "/forum/posts/**").permitAll()
+                .requestMatchers("/account/register", "/forum/posts/**", "/auth/**").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/account/user/{login}")
                 .access(new WebExpressionAuthorizationManager(
                         "hasRole('ADMIN') or authentication.name == #login"))
