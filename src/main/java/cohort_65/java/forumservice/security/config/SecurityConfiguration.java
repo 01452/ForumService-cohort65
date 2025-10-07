@@ -1,6 +1,8 @@
 package cohort_65.java.forumservice.security.config;
 
 import cohort_65.java.forumservice.accounting.model.Role;
+import cohort_65.java.forumservice.security.filter.TokenFilter;
+import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,12 +15,13 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfiguration {
-
+    final TokenFilter tokenFilter;
     final CustomWebSecurity webSecurity;
 
     @Bean
@@ -54,7 +57,9 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.PUT, "/forum/post/{id}/comment/{author}")
                 .access(new WebExpressionAuthorizationManager(
                         "authentication.name == #author"))
-                .anyRequest().authenticated());
+                .anyRequest().authenticated()
+        );
+        http.addFilterAfter(tokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

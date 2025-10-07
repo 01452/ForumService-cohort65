@@ -1,5 +1,6 @@
 package cohort_65.java.forumservice.security.service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -65,6 +66,22 @@ public class TokenService {
         } catch (JwtException e) {
             return false;
         }
+    }
+
+    public Claims getAccessTokenClaims(String accessToken) {
+        return getClaims(accessToken,accessKey);
+    }
+
+    public Claims getRefreshTokenClaims(String refreshToken) {
+        return getClaims(refreshToken,refreshKey);
+    }
+
+    private Claims getClaims(String token, SecretKey key) {
+        return Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
 

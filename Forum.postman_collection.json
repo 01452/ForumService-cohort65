@@ -34,7 +34,61 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"login\":\"john@gmail.com\",\r\n    \"password\": \"1234\",\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Smith\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/account/register",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Sep 2025 08:18:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"login\": \"john@gmail.com\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Smith\",\n    \"roles\": [\n        \"USER\"\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Remove User",
@@ -53,7 +107,57 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Remove User",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/account/user/{{login}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"account",
+										"user",
+										"{{login}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Disposition",
+									"value": "inline;filename=f.txt"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Sep 2025 08:46:58 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"login\": \"john+11@gmail.com\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Smith\",\n    \"roles\": [\n        \"USER\"\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Get User",
@@ -72,7 +176,57 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/account/user/{{login}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"account",
+										"user",
+										"{{login}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Disposition",
+									"value": "inline;filename=f.txt"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Sep 2025 08:25:24 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"login\": \"john1@gmail.com\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Smith\",\n    \"roles\": [\n        \"USER\"\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Update User",
@@ -100,7 +254,66 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update User",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Johny\",\r\n    \"lastName\": \"Peterson\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/account/user/{{login}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"account",
+										"user",
+										"{{login}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Disposition",
+									"value": "inline;filename=f.txt"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Sep 2025 08:50:31 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"login\": \"john+11@gmail.com\",\n    \"firstName\": \"Johny\",\n    \"lastName\": \"Peterson\",\n    \"roles\": [\n        \"USER\"\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Add Role",
@@ -121,7 +334,55 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Add Role",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/account/user/{{login}}/role/{{role}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"account",
+										"user",
+										"{{login}}",
+										"role",
+										"{{role}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Sep 2025 08:58:47 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"login\": \"john+11@gmail.com\",\n    \"firstName\": \"Johny\",\n    \"lastName\": \"Peterson\",\n    \"roles\": [\n        \"USER\",\n        \"MODER\"\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Remove Role",
@@ -139,6 +400,165 @@
 								"{{login}}",
 								"role",
 								"{{role}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Remove Role",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/account/user/{{login}}/role/{{role}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"account",
+										"user",
+										"{{login}}",
+										"role",
+										"{{role}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Sep 2025 08:58:51 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"login\": \"john+11@gmail.com\",\n    \"firstName\": \"Johny\",\n    \"lastName\": \"Peterson\",\n    \"roles\": [\n        \"USER\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/account/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic QW5keToxMjM0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/account/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"account",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Oct 2025 09:03:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"login\": \"Andy\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Smith\",\n    \"roles\": [\n        \"USER\"\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "JWT-Cookies",
+			"item": [
+				{
+					"name": "JWT-Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"Andy1\",\n    \"password\": \"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
 							]
 						}
 					},
