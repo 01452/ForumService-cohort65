@@ -5,6 +5,7 @@ import cohort_65.java.forumservice.accounting.dto.UserRegisterDto;
 import cohort_65.java.forumservice.accounting.dto.UserUpdateDto;
 import cohort_65.java.forumservice.accounting.service.UserAccountService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -39,18 +40,24 @@ public class UserAccountController {
 
     @PutMapping("/user/{login}/role/{role}")
     public UserDto addRoleForUser(@PathVariable String login,
-                                     @PathVariable String role) {
-        return userAccountService.changeRoleForUser(login, role,true);
+                                  @PathVariable String role) {
+        return userAccountService.changeRoleForUser(login, role, true);
     }
 
     @DeleteMapping("/user/{login}/role/{role}")
     public UserDto removeRoleForUser(@PathVariable String login,
-                                  @PathVariable String role) {
-        return userAccountService.changeRoleForUser(login, role,false);
+                                     @PathVariable String role) {
+        return userAccountService.changeRoleForUser(login, role, false);
     }
 
     @PostMapping("/login")
     public UserDto login(Principal principal) {
         return userAccountService.getUserByLogin(principal.getName());
+    }
+
+    @PutMapping("/password")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updatePassword(Principal principal, @RequestHeader("X-Password") String newPassword) {
+        userAccountService.changePassword(principal.getName(), newPassword);
     }
 }
